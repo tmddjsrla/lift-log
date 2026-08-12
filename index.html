@@ -20,7 +20,8 @@
   --warn:#D2664F;
   --r:3px;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+input,textarea,select{font-size:16px}
 html,body{margin:0;padding:0}
 body{
   background:var(--ink);
@@ -31,8 +32,9 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 .mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
-.wrap{max-width:560px;margin:0 auto;padding:0 14px 130px}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px 120px}
 
+/* header */
 header{
   position:sticky;top:0;z-index:20;background:rgba(16,19,25,.94);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
@@ -43,30 +45,17 @@ header{
   letter-spacing:.22em;text-transform:uppercase;margin:0;color:var(--mark)}
 .hd .date{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.06em}
 
+/* tabs */
 nav{display:flex;gap:0;max-width:560px;margin:10px auto 0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 nav button{
   flex:1;background:transparent;border:0;border-right:1px solid var(--line);
   color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;
-  letter-spacing:.1em;padding:9px 0;cursor:pointer;font-weight:600;position:relative;
+  letter-spacing:.14em;padding:9px 0;cursor:pointer;font-weight:600;
 }
 nav button:last-child{border-right:0}
 nav button.on{background:var(--mark);color:#101319}
-nav button .dot{
-  position:absolute;top:5px;right:7px;width:5px;height:5px;border-radius:50%;
-  background:var(--warn);display:none
-}
-nav button.alert .dot{display:block}
 
-/* unsaved banner */
-.banner{
-  max-width:560px;margin:9px auto 0;border:1px solid var(--warn);border-radius:var(--r);
-  background:rgba(210,102,79,.1);padding:8px 11px;
-  font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--warn);
-  letter-spacing:.03em;line-height:1.5;display:none
-}
-.banner.show{display:block}
-.banner b{color:var(--paper);font-weight:600}
-
+/* session chips */
 .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0 6px}
 .chip{
   background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
@@ -78,14 +67,15 @@ nav button.alert .dot{display:block}
 .chip.on .n{color:var(--mark)}
 
 .hint{font-size:11.5px;color:var(--muted);margin:8px 0 18px;line-height:1.6}
-.hint b{color:var(--paper);font-weight:600}
 
+/* exercise card */
 .ex{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
 .ex-hd{display:flex;align-items:center;gap:10px;padding:12px 13px 10px;border-bottom:1px solid var(--line)}
 .idx{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mark);font-weight:700;min-width:16px}
 .ex-hd .nm{font-weight:700;font-size:14.5px;flex:1;line-height:1.3}
 .ex-hd .tg{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-align:right;white-space:nowrap}
 
+/* spine of set blocks */
 .spine{display:flex;gap:3px;padding:0 13px;margin:9px 0 2px}
 .blk{height:3px;flex:1;background:var(--line);border-radius:2px;transition:background .2s}
 .blk.f{background:var(--done)}
@@ -93,28 +83,30 @@ nav button.alert .dot{display:block}
 .last{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);padding:0 13px 8px;letter-spacing:.02em}
 .last b{color:var(--paper);font-weight:500}
 
-.sets{padding:4px 9px 11px}
-.row{display:flex;align-items:center;gap:5px;padding:5px 4px;border-bottom:1px dashed rgba(44,53,66,.7)}
+.sets{padding:4px 6px 11px}
+.row{display:flex;align-items:center;gap:4px;padding:5px 2px;border-bottom:1px dashed rgba(44,53,66,.7)}
 .row:last-child{border-bottom:0}
 .sn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);width:16px}
 .fld{display:flex;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:var(--r)}
-.fld button{background:transparent;border:0;color:var(--muted);width:26px;height:34px;font-size:16px;cursor:pointer;font-family:'IBM Plex Mono',monospace}
+.fld button{background:transparent;border:0;color:var(--muted);width:23px;height:36px;font-size:17px;cursor:pointer;font-family:'IBM Plex Mono',monospace;flex:none}
 .fld button:active{color:var(--mark)}
 .fld input{
-  width:44px;background:transparent;border:0;color:var(--paper);text-align:center;
-  font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;padding:0;height:34px;
+  width:38px;background:transparent;border:0;color:var(--paper);text-align:center;
+  font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;padding:0;
+  height:36px;
 }
 .fld input:focus{outline:0;color:var(--mark)}
-.fld .u{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--muted);padding-right:7px}
+.fld .u{font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:var(--muted);padding-right:4px;flex:none}
 .rir{display:flex;gap:2px;margin-left:auto}
 .rir button{
-  width:23px;height:34px;background:var(--panel2);border:1px solid var(--line);
+  width:21px;height:36px;background:var(--panel2);border:1px solid var(--line);flex:none;
   color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;border-radius:var(--r);cursor:pointer
 }
 .rir button.on{background:var(--mark);color:#101319;border-color:var(--mark);font-weight:700}
 .rir button.hard.on{background:var(--warn);color:#fff;border-color:var(--warn)}
-.rlab{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-left:auto;padding-right:2px;align-self:center}
+.fld{flex:none}
 
+/* bottom bar */
 .bar{
   position:fixed;left:0;right:0;bottom:0;z-index:30;
   background:rgba(16,19,25,.96);backdrop-filter:blur(12px);
@@ -131,11 +123,8 @@ nav button.alert .dot{display:block}
 }
 .btn:disabled{background:var(--line);color:var(--muted)}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--paper);margin-left:0}
-.btn.wide{width:100%;margin:0}
-.btn.warn{background:var(--warn);color:#fff}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-
+/* history */
 .rec{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 13px;margin-bottom:8px}
 .rec-hd{display:flex;align-items:baseline;gap:9px;margin-bottom:7px}
 .rec-hd .d{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mark);letter-spacing:.06em}
@@ -146,6 +135,7 @@ nav button.alert .dot{display:block}
 .rec li span:first-child{font-family:'Noto Sans KR',sans-serif;color:var(--paper);flex:1;font-size:11.5px}
 .del{background:transparent;border:0;color:var(--muted);font-size:11px;font-family:'IBM Plex Mono',monospace;cursor:pointer;padding:6px 0 0}
 
+/* body log */
 .bform{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
 .bfield{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 9px}
 .bfield label{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.1em;margin-bottom:3px}
@@ -159,28 +149,16 @@ table.b td:first-child{text-align:left;color:var(--muted)}
 
 .empty{text-align:center;color:var(--muted);font-size:12.5px;padding:44px 20px;line-height:1.7}
 .sec{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);margin:22px 0 9px;text-transform:uppercase}
-.sec:first-child{margin-top:16px}
 textarea.out{
-  width:100%;height:150px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
-  color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:11px;line-height:1.55;
-  -webkit-user-select:text;user-select:text;
+  width:100%;height:190px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:16px;padding:11px;line-height:1.5;
 }
-.stat{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
-  padding:11px 12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
-  color:var(--muted);line-height:1.7;margin-bottom:10px
-}
-.stat b{color:var(--paper);font-weight:600}
-.stat .ok{color:var(--done)}
-.stat .no{color:var(--warn)}
 .toast{
   position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(14px);
   background:var(--done);color:#0c1114;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;
-  padding:10px 18px;border-radius:var(--r);opacity:0;transition:.25s;pointer-events:none;z-index:60;letter-spacing:.05em;
-  max-width:88vw;text-align:center
+  padding:10px 18px;border-radius:var(--r);opacity:0;transition:.25s;pointer-events:none;z-index:60;letter-spacing:.05em
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.bad{background:var(--warn);color:#fff}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -195,16 +173,13 @@ textarea.out{
     <button data-tab="log" class="on">오늘</button>
     <button data-tab="hist">지난 기록</button>
     <button data-tab="body">몸</button>
-    <button data-tab="file">파일<span class="dot"></span></button>
   </nav>
-  <div class="banner" id="banner"></div>
 </header>
 
 <div class="wrap">
   <div id="v-log"></div>
   <div id="v-hist" hidden></div>
   <div id="v-body" hidden></div>
-  <div id="v-file" hidden></div>
 </div>
 
 <div class="bar" id="bar">
@@ -217,8 +192,7 @@ textarea.out{
 <div class="toast" id="toast"></div>
 
 <script>
-/* ── 데이터는 메모리에만 존재한다. 파일 탭에서 내보내야 남는다. ───── */
-
+const KEY='lift-log-v1';
 const ROUTINES={
  '상체A':{label:'밀기',ex:[
   {n:'스미스머신 벤치프레스',s:3,r:'10~12',w:20},
@@ -250,51 +224,44 @@ const ROUTINES={
   {n:'덤벨 컬',s:3,r:'12',w:8}]}
 };
 const ORDER=['상체A','상체B','하체','상체C'];
-const KEY='lift-log-v2';
 
-let DB={sessions:[],body:[]};
-let cur='상체A', entries={}, tab='log', dirty=false, loadedFrom='없음';
+let DB={sessions:[],body:[],draft:null};
+let cur='상체A', entries={}, tab='log';
 
 const $=s=>document.querySelector(s);
 const pad=n=>String(n).padStart(2,'0');
 const todayStr=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
 const dow=()=>['일','월','화','수','목','금','토'][new Date().getDay()];
 
-function toast(m,bad){
-  const t=$('#toast');t.textContent=m;
-  t.classList.toggle('bad',!!bad);t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2200);
-}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)}
 
-/* ── 보조 캐시: 브라우저 저장소가 살아있으면 덤으로 쓴다. 없어도 무방. ── */
-const CACHE=(()=>{
-  let ok=true;
-  try{localStorage.setItem('__t','1');localStorage.removeItem('__t')}catch(e){ok=false}
-  return{
-    ok,
-    read(){if(!ok)return null;try{return localStorage.getItem(KEY)}catch(e){return null}},
-    write(v){if(!ok)return;try{localStorage.setItem(KEY,v)}catch(e){}}
+/* 저장소: Claude 안에서는 window.storage, 밖에서는 브라우저 저장소 */
+const STORE=(()=>{
+  const hasCl = typeof window!=='undefined' && window.storage && typeof window.storage.get==='function';
+  if(hasCl) return {
+    mode:'claude',
+    async get(){try{const r=await window.storage.get(KEY);return r&&r.value?r.value:null}catch(e){return null}},
+    async set(v){await window.storage.set(KEY,v)}
+  };
+  let ok=true; try{localStorage.setItem('__t','1');localStorage.removeItem('__t')}catch(e){ok=false}
+  return {
+    mode: ok?'local':'none',
+    async get(){try{return localStorage.getItem(KEY)}catch(e){return null}},
+    async set(v){if(!ok)throw new Error('no storage');localStorage.setItem(KEY,v)}
   };
 })();
 
-function snapshot(){return{app:'lift-log',v:2,exported:todayStr(),data:{sessions:DB.sessions,body:DB.body,draft:{date:todayStr(),routine:cur,entries}}}}
-function touch(){
-  dirty=true;
-  CACHE.write(JSON.stringify(snapshot()));
-  paintBanner();
+async function load(){
+  const raw=await STORE.get();
+  if(raw){try{DB=JSON.parse(raw)}catch(e){}}
+  if(!DB.sessions)DB.sessions=[]; if(!DB.body)DB.body=[];
+  if(DB.draft&&DB.draft.date===todayStr()){cur=DB.draft.routine;entries=DB.draft.entries||{}}
 }
-function clean(){dirty=false;paintBanner()}
-
-function paintBanner(){
-  const b=$('#banner'), nv=document.querySelector('nav button[data-tab="file"]');
-  if(dirty){
-    b.classList.add('show');
-    b.innerHTML=`내보내지 않은 기록이 있음 — <b>파일 탭 → 백업 내보내기</b>${CACHE.ok?'':' · 탭을 닫으면 사라짐'}`;
-    nv.classList.add('alert');
-  }else{
-    b.classList.remove('show');nv.classList.remove('alert');
-  }
+async function save(){
+  try{await STORE.set(JSON.stringify(DB))}
+  catch(e){toast('저장 실패 — 백업 파일로 저장해')}
 }
+function saveDraft(){DB.draft={date:todayStr(),routine:cur,entries};save()}
 
 function lastFor(name){
   for(let i=DB.sessions.length-1;i>=0;i--){
@@ -317,7 +284,6 @@ function volume(){
 }
 function anyDone(){return Object.values(entries).some(a=>a.some(s=>s&&s.w!==null&&s.r!==null))}
 
-/* ── 오늘 ─────────────────────────────────────────────── */
 function renderLog(){
   const v=$('#v-log');
   let h='<div class="chips">';
@@ -351,7 +317,6 @@ function renderLog(){
         <div class="fld"><button data-a="r-">−</button>
           <input type="number" inputmode="numeric" data-f="r" value="${rv}" placeholder="0">
           <button data-a="r+">+</button><span class="u">회</span></div>
-        <span class="rlab">RIR</span>
         <div class="rir">${[0,1,2,3,4].map(x=>
           `<button data-rir="${x}" class="${st.rir===x?'on':''} ${x<2?'hard':''}">${x}</button>`).join('')}</div>
       </div>`;
@@ -363,12 +328,11 @@ function renderLog(){
   $('#saveBtn').disabled=!anyDone();
 }
 
-/* ── 지난 기록 ────────────────────────────────────────── */
 function renderHist(){
   const v=$('#v-hist');
   let h='';
   if(!DB.sessions.length){
-    h='<div class="empty">저장된 세션이 없어.<br>오늘 탭에서 기록하고 세션 저장을 누르거나,<br>파일 탭에서 백업을 불러와.</div>';
+    h='<div class="empty">저장된 세션이 없어.<br>오늘 탭에서 기록하고 세션 저장을 눌러.</div>';
   }else{
     h+='<div class="sec">세션 기록</div>';
     [...DB.sessions].reverse().forEach(s=>{
@@ -383,15 +347,28 @@ function renderHist(){
       h+=`</ul><button class="del" data-del="${s.id}">삭제</button></div>`;
     });
   }
-  h+='<div class="sec">Claude에게 붙여넣을 요약</div>';
+  h+='<div class="sec">내보내기 — 복사해서 Claude에게 붙여넣기</div>';
   h+='<textarea class="out" id="out" readonly></textarea>';
-  h+='<div style="margin-top:8px"><button class="btn ghost wide" id="copySum">요약 복사</button></div>';
+  h+='<div style="display:flex;gap:7px;margin-top:8px"><button class="btn ghost" id="copyBtn" style="flex:1;margin:0">전체 복사</button></div>';
+
+  h+='<div class="sec">백업 · 복원</div>';
+  h+=`<div class="hint" style="margin:0 0 10px">기록은 이 브라우저 안에만 있어. 사파리 데이터를 지우면 사라지니까 주 1회는 백업 파일을 저장해서 아이폰 파일 앱이나 iCloud에 넣어둬.</div>`;
+  h+='<div style="display:flex;gap:7px"><button class="btn ghost" id="dlBtn" style="flex:1;margin:0">백업 파일 저장</button>';
+  h+='<button class="btn ghost" id="impBtn" style="flex:1;margin:0">백업 불러오기</button></div>';
+  h+='<input type="file" id="fileIn" accept=".json,application/json" hidden>';
+  h+=`<div class="hint" style="margin-top:9px">불러오기는 <b style="color:var(--paper)">덮어쓰기가 아니라 병합</b>이야. 같은 날짜·같은 세션은 중복으로 안 들어가.</div>`;
+  h+=`<div class="hint" style="margin-top:9px;color:${STORE.mode==='none'?'var(--warn)':'var(--muted)'}">저장 방식: ${
+    STORE.mode==='claude'?'Claude 저장소 (이 대화 안)':
+    STORE.mode==='local'?'브라우저 저장소 (이 브라우저 안)':
+    '저장 불가 — 이 환경에서는 기록이 유지되지 않아. 세션 끝나고 반드시 백업 파일로 저장할 것.'}</div>`;
+
   v.innerHTML=h;
-  $('#out').value=summaryText();
+  $('#out').value=exportText();
 }
 
-function summaryText(){
-  let t='운동 기록 요약 ('+todayStr()+')\n\n';
+function exportText(){
+  let t='운동 기록 내보내기 ('+todayStr()+')\n';
+  t+='174cm / 목표: 리컴프\n\n';
   if(DB.body.length){
     t+='[신체]\n';
     DB.body.forEach(b=>{t+=`${b.date}  ${b.w}kg  골격근 ${b.m||'-'}kg  체지방 ${b.f||'-'}%\n`});
@@ -410,14 +387,13 @@ function summaryText(){
   return t;
 }
 
-/* ── 몸 ───────────────────────────────────────────────── */
 function renderBody(){
   const v=$('#v-body');
   let h='<div class="sec">오늘 측정</div><div class="bform">';
   h+=`<div class="bfield"><label>체중 KG</label><input id="bw" type="number" inputmode="decimal" placeholder="64"></div>`;
   h+=`<div class="bfield"><label>골격근 KG</label><input id="bm" type="number" inputmode="decimal" placeholder="29.5"></div>`;
   h+=`<div class="bfield"><label>체지방 %</label><input id="bf" type="number" inputmode="decimal" placeholder="15"></div>`;
-  h+='</div><button class="btn ghost wide" id="bAdd">측정 기록</button>';
+  h+='</div><button class="btn ghost" id="bAdd" style="width:100%;margin:0">측정 기록</button>';
   h+='<div class="hint" style="margin-top:14px">주 1회, 아침 공복에 같은 조건으로. 매일 재면 수분 변동에 휘둘려서 판단이 흐려져.</div>';
   if(DB.body.length){
     h+='<table class="b"><tr><th>날짜</th><th>체중</th><th>골격근</th><th>체지방%</th></tr>';
@@ -429,151 +405,27 @@ function renderBody(){
   v.innerHTML=h;
 }
 
-/* ── 파일 ─────────────────────────────────────────────── */
-function renderFile(){
-  const v=$('#v-file');
-  const dcount=Object.values(entries).reduce((a,x)=>a+x.filter(s=>s&&s.w!==null&&s.r!==null).length,0);
-  let h='<div class="sec">상태</div>';
-  h+=`<div class="stat">
-    불러온 데이터 · <b>${loadedFrom}</b><br>
-    세션 <b>${DB.sessions.length}</b>개 · 신체 <b>${DB.body.length}</b>개 · 작성 중인 세트 <b>${dcount}</b>개<br>
-    내보내기 필요 · <span class="${dirty?'no':'ok'}">${dirty?'있음':'없음'}</span><br>
-    브라우저 자동 저장 · <span class="${CACHE.ok?'ok':'no'}">${CACHE.ok?'작동 중 (보조 수단)':'차단됨 — 파일 백업이 유일한 저장'}</span>
-  </div>`;
-
-  h+='<div class="sec">내보내기</div>';
-  h+='<div class="hint" style="margin:0 0 9px">기록을 끝냈으면 <b>매번</b> 여기서 내보내. 안 하면 사라져.</div>';
-  h+='<button class="btn wide" id="expShare" style="margin-bottom:7px">백업 내보내기 (공유)</button>';
-  h+='<div class="grid2"><button class="btn ghost" id="expDl">파일로 저장</button>';
-  h+='<button class="btn ghost" id="expCopy">텍스트 복사</button></div>';
-  h+='<textarea class="out" id="raw" readonly style="margin-top:8px;height:110px"></textarea>';
-  h+='<div class="hint">복사가 안 되면 위 칸을 길게 눌러 <b>전체 선택 → 복사</b>한 뒤 메모 앱에 붙여넣어도 돼.</div>';
-
-  h+='<div class="sec">불러오기</div>';
-  h+='<div class="hint" style="margin:0 0 9px">기존 기록에 <b>병합</b>돼. 같은 날짜·같은 세션은 중복으로 안 들어가.</div>';
-  h+='<button class="btn ghost wide" id="impFile" style="margin-bottom:7px">백업 파일 선택</button>';
-  h+='<input type="file" id="fileIn" accept=".json,application/json,text/plain" hidden>';
-  h+='<textarea class="out" id="pasteIn" placeholder="또는 백업 텍스트를 여기 붙여넣기" style="height:90px"></textarea>';
-  h+='<div style="margin-top:7px"><button class="btn ghost wide" id="impText">붙여넣은 텍스트로 복원</button></div>';
-
-  h+='<div class="sec">위험</div>';
-  h+='<button class="btn ghost wide" id="wipe" style="border-color:var(--warn);color:var(--warn)">전체 기록 지우기</button>';
-
-  v.innerHTML=h;
-  $('#raw').value=JSON.stringify(snapshot());
-}
-
-function filename(){return '운동기록_'+todayStr()+'.json'}
-
-async function exportShare(){
-  const text=JSON.stringify(snapshot(),null,1);
-  try{
-    const file=new File([text],filename(),{type:'application/json'});
-    if(navigator.canShare&&navigator.canShare({files:[file]})){
-      await navigator.share({files:[file],title:'운동 기록 백업'});
-      clean();toast('내보냄 — 파일 앱에 저장했는지 확인');return;
-    }
-  }catch(e){
-    if(e&&e.name==='AbortError'){toast('취소됨 — 아직 저장 안 됨',true);return}
-  }
-  exportDownload();
-}
-
-function exportDownload(){
-  const text=JSON.stringify(snapshot(),null,1);
-  try{
-    const blob=new Blob([text],{type:'application/json'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;a.download=filename();
-    document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),4000);
-    clean();toast('다운로드함 — 파일 앱 확인');
-  }catch(e){
-    toast('저장 실패 — 텍스트 복사를 써',true);
-  }
-}
-
-function selectAll(el){
-  const ro=el.readOnly;
-  el.readOnly=false;el.contentEditable=true;
-  const r=document.createRange();r.selectNodeContents(el);
-  const s=window.getSelection();s.removeAllRanges();s.addRange(r);
-  el.setSelectionRange(0,999999);
-  el.contentEditable=false;el.readOnly=ro;
-}
-
-async function copyText(el,msg){
-  const val=el.value;
-  try{
-    if(navigator.clipboard&&window.isSecureContext){
-      await navigator.clipboard.writeText(val);toast(msg);return true;
-    }
-  }catch(e){}
-  selectAll(el);
-  let ok=false;
-  try{ok=document.execCommand('copy')}catch(e){}
-  toast(ok?msg:'복사 실패 — 길게 눌러 직접 복사해',!ok);
-  return ok;
-}
-
-function merge(incoming){
-  if(!incoming||!Array.isArray(incoming.sessions))throw new Error('형식 오류');
-  const key=s=>s.date+'|'+s.routine+'|'+(s.volume||0);
-  const have=new Set(DB.sessions.map(key));
-  let addS=0;
-  incoming.sessions.forEach(s=>{
-    if(!have.has(key(s))){DB.sessions.push(s);have.add(key(s));addS++}
-  });
-  DB.sessions.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:(a.id||0)-(b.id||0));
-
-  let addB=0;
-  const bhave=new Set(DB.body.map(b=>b.date+'|'+b.w));
-  (incoming.body||[]).forEach(b=>{
-    if(!bhave.has(b.date+'|'+b.w)){DB.body.push(b);bhave.add(b.date+'|'+b.w);addB++}
-  });
-  DB.body.sort((a,b)=>a.date<b.date?-1:1);
-
-  if(incoming.draft&&incoming.draft.date===todayStr()&&!anyDone()){
-    cur=incoming.draft.routine||cur;
-    entries=incoming.draft.entries||{};
-  }
-  return {addS,addB};
-}
-
-function parsePayload(txt){
-  const p=JSON.parse(txt);
-  return (p&&p.data&&Array.isArray(p.data.sessions))?p.data:p;
-}
-
-/* ── 렌더 ─────────────────────────────────────────────── */
 function render(){
   $('#v-log').hidden=tab!=='log';
   $('#v-hist').hidden=tab!=='hist';
   $('#v-body').hidden=tab!=='body';
-  $('#v-file').hidden=tab!=='file';
   $('#bar').style.display=tab==='log'?'block':'none';
   if(tab==='log')renderLog();
   if(tab==='hist')renderHist();
   if(tab==='body')renderBody();
-  if(tab==='file')renderFile();
-  paintBanner();
-}
-function go(t){
-  tab=t;
-  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  render();window.scrollTo(0,0);
 }
 
-/* ── 이벤트 ───────────────────────────────────────────── */
+/* events */
 document.addEventListener('click',async ev=>{
   const t=ev.target;
 
   const nv=t.closest('nav button');
-  if(nv){go(nv.dataset.tab);return}
+  if(nv){tab=nv.dataset.tab;
+    document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b===nv));
+    render();return}
 
   const chip=t.closest('.chip');
-  if(chip){cur=chip.dataset.rt;touch();render();return}
+  if(chip){cur=chip.dataset.rt;saveDraft();render();return}
 
   const row=t.closest('.row');
   if(row){
@@ -585,11 +437,11 @@ document.addEventListener('click',async ev=>{
       if(t.dataset.a==='w-'){st.w=Math.max(0,(st.w===null?def:st.w)-2.5);wi.value=st.w}
       if(t.dataset.a==='r+'){st.r=(st.r===null?0:st.r)+1;ri.value=st.r}
       if(t.dataset.a==='r-'){st.r=Math.max(0,(st.r===null?1:st.r)-1);ri.value=st.r}
-      touch();renderLog();return;
+      saveDraft();renderLog();return;
     }
     if(t.dataset.rir!==undefined){
       st.rir=(st.rir===+t.dataset.rir)?null:+t.dataset.rir;
-      touch();renderLog();return;
+      saveDraft();renderLog();return;
     }
   }
 
@@ -597,47 +449,40 @@ document.addEventListener('click',async ev=>{
     const es=ROUTINES[cur].ex.map(e=>({name:e.n,sets:[...Array(e.s)].map((_,k)=>{
       const s=(entries[e.n]||[])[k]||{};return {w:s.w??null,r:s.r??null,rir:s.rir??null}})}));
     DB.sessions.push({id:Date.now(),date:todayStr(),routine:cur,entries:es,volume:volume()});
-    entries={};touch();
-    toast('세션 저장됨 — 이제 백업을 내보내');
-    go('file');return;
+    entries={};DB.draft=null;await save();
+    toast('저장 완료');render();return;
   }
 
   if(t.dataset.del){
     if(confirm('이 세션을 삭제할까?')){
-      DB.sessions=DB.sessions.filter(s=>s.id!=t.dataset.del);touch();renderHist();}
+      DB.sessions=DB.sessions.filter(s=>s.id!=t.dataset.del);await save();renderHist();}
     return;
   }
 
-  if(t.id==='copySum'){await copyText($('#out'),'요약 복사됨');return}
-  if(t.id==='expCopy'){const ok=await copyText($('#raw'),'백업 텍스트 복사됨');if(ok){clean();renderFile()}return}
-  if(t.id==='expShare'){await exportShare();renderFile();return}
-  if(t.id==='expDl'){exportDownload();renderFile();return}
-  if(t.id==='impFile'){$('#fileIn').click();return}
-
-  if(t.id==='impText'){
-    const txt=$('#pasteIn').value.trim();
-    if(!txt){toast('붙여넣은 내용이 없어',true);return}
-    try{
-      const {addS,addB}=merge(parsePayload(txt));
-      touch();toast(`세션 ${addS}개 · 신체 ${addB}개 복원`);
-      loadedFrom='붙여넣은 텍스트';render();
-    }catch(e){toast('읽을 수 없는 형식',true)}
+  if(t.id==='copyBtn'){
+    const ta=$('#out');ta.select();ta.setSelectionRange(0,99999);
+    try{await navigator.clipboard.writeText(ta.value);toast('복사됨')}
+    catch(e){document.execCommand('copy');toast('복사됨')}
     return;
   }
 
-  if(t.id==='wipe'){
-    if(confirm('모든 기록을 지울까? 내보낸 백업 파일이 없으면 복구 못 해.')){
-      DB={sessions:[],body:[]};entries={};loadedFrom='없음';
-      touch();toast('전체 삭제됨');render();
-    }
-    return;
+  if(t.id==='dlBtn'){
+    const blob=new Blob([JSON.stringify({app:'lift-log',v:1,exported:todayStr(),data:DB},null,1)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='운동기록_백업_'+todayStr()+'.json';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+    toast('백업 파일 저장');return;
   }
+
+  if(t.id==='impBtn'){$('#fileIn').click();return}
 
   if(t.id==='bAdd'){
     const w=parseFloat($('#bw').value);
-    if(!w){toast('체중을 입력해',true);return}
+    if(!w){toast('체중을 입력해');return}
     DB.body.push({date:todayStr(),w,m:parseFloat($('#bm').value)||null,f:parseFloat($('#bf').value)||null});
-    touch();toast('기록됨 — 백업 잊지 마');renderBody();return;
+    await save();toast('기록됨');renderBody();return;
   }
 });
 
@@ -653,7 +498,7 @@ document.addEventListener('input',e=>{
   row.closest('.ex').querySelectorAll('.blk').forEach((b,k)=>{
     b.classList.toggle('f',!!(arr[k]&&arr[k].w!==null&&arr[k].r!==null));
   });
-  touch();
+  saveDraft();
 });
 
 document.addEventListener('change',ev=>{
@@ -661,39 +506,41 @@ document.addEventListener('change',ev=>{
   const f=ev.target.files&&ev.target.files[0];
   if(!f)return;
   const rd=new FileReader();
-  rd.onload=()=>{
+  rd.onload=async()=>{
+    let incoming;
     try{
-      const {addS,addB}=merge(parsePayload(rd.result));
-      loadedFrom=f.name;touch();
-      toast(`세션 ${addS}개 · 신체 ${addB}개 복원`);
-      render();
-    }catch(e){toast('읽을 수 없는 파일',true)}
+      const p=JSON.parse(rd.result);
+      incoming=p.data&&p.data.sessions?p.data:p;
+      if(!Array.isArray(incoming.sessions))throw 0;
+    }catch(e){toast('읽을 수 없는 파일');ev.target.value='';return}
+
+    const key=s=>s.date+'|'+s.routine+'|'+(s.volume||0);
+    const have=new Set(DB.sessions.map(key));
+    let addS=0;
+    incoming.sessions.forEach(s=>{
+      if(!have.has(key(s))){DB.sessions.push(s);have.add(key(s));addS++}
+    });
+    DB.sessions.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:(a.id||0)-(b.id||0));
+
+    let addB=0;
+    const bhave=new Set(DB.body.map(b=>b.date+'|'+b.w));
+    (incoming.body||[]).forEach(b=>{
+      if(!bhave.has(b.date+'|'+b.w)){DB.body.push(b);bhave.add(b.date+'|'+b.w);addB++}
+    });
+    DB.body.sort((a,b)=>a.date<b.date?-1:1);
+
+    await save();
+    toast(`세션 ${addS}개 · 신체 ${addB}개 복원`);
+    renderHist();
     ev.target.value='';
   };
-  rd.onerror=()=>{toast('파일을 열 수 없어',true);ev.target.value=''};
   rd.readAsText(f);
 });
 
-window.addEventListener('beforeunload',e=>{
-  if(dirty){e.preventDefault();e.returnValue=''}
-});
-
-/* ── 시작 ─────────────────────────────────────────────── */
-(()=>{
+(async()=>{
   $('#today').textContent=todayStr()+' ('+dow()+')';
-  const raw=CACHE.read();
-  if(raw){
-    try{
-      const d=parsePayload(raw);
-      DB.sessions=d.sessions||[];DB.body=d.body||[];
-      if(d.draft&&d.draft.date===todayStr()){cur=d.draft.routine||cur;entries=d.draft.entries||{}}
-      loadedFrom='브라우저 자동 저장';
-    }catch(e){}
-  }
+  await load();
   render();
-  if(!raw&&CACHE.ok===false){
-    setTimeout(()=>toast('이 환경은 자동 저장이 없어 — 파일 탭에서 백업 불러오기',true),600);
-  }
 })();
 </script>
 </body>
